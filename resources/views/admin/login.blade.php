@@ -2,10 +2,9 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('admin.login') }}">
+    <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <!-- Email Address -->
         <div>
             <x-input-label for="username" :value="__('Username')" />
             <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus />

@@ -2,7 +2,7 @@
 @section('main-content')
         {{-- Блок о нас --}}
         <div class="mt-4 p-4 d-flex justify-content-center flex-column gap-3">
-            <div class="text-center mt-2 mb-5">
+            <div class="text-center mt-5">
                 <h2 class="fs-2 fw-medium">Чем мы занимаемся?</h2>
             </div>
             <section class="content-wrapper">

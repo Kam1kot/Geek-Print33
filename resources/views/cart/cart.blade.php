@@ -2,7 +2,7 @@
 @section('main-content')
 <section class="content-wrapper site-cart">
         <div class="content-inner">
-            <div class="text-center mt-2 mb-5">
+            <div class="text-center cart mb-5">
                 <h2 class="fs-1 fw-medium">Ваша корзина</h2>
             </div>
             <hr class="w-100 border border-secondary border-2 opacity-50">

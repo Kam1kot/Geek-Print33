@@ -22,6 +22,9 @@
     {{-- CSS файл --}}
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
+    {{-- Кроппер --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css" rel="stylesheet">
+    
     {{-- Бутстрап --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
@@ -75,6 +78,10 @@
 <body>
   @include('partials.cookie-notification')
   <aside class="sidebar" id="mainSidebar">
+    <div class="logo">
+        <img width="25px" style="height: 40px !important;" loading="lazy" src="{{ asset('imgs/technical/logo.png') }}"></img>
+        <a class="indie-flower-regular fs-1 fw-bold text-nowrap" href="{{ route('main.index') }}"><span class="title-geek">Geek</span>-Print33</a>
+    </div>
     <nav class="mt-5">
       <ul
           class="nav sidebar-menu flex-column"
@@ -142,39 +149,36 @@
               </a>
           </li>
       </ul>
-  </nav>
-  <div class="sidebar-info">
-      <hr>
-      <div class="sidebar-info-inner p-4 text-center">
-          <i class="fa-solid fa-cube"></i>
-          3D-услуги
-      </div>
-  </div>
+    </nav>
+    <div class="sidebar-info">
+        <hr>
+        <div class="sidebar-info-inner p-4 text-center">
+            <i class="fa-solid fa-cube"></i>
+            3D-услуги
+        </div>
+    </div>
   </aside>
   <header class="topbar">
         <div class="navbar-wrapper sticky-top">
-            <div class="logo">
-                <img width="25px" style="height: 40px !important;" loading="lazy" src="{{ asset('imgs/technical/logo.png') }}"></img>
-                <a class="indie-flower-regular fs-1 fw-bold text-nowrap" href="{{ route('main.index') }}"><span class="title-geek">Geek</span>-Print33</a>
-            </div>
-            <div class="navbar-other">
-                <div class="divider"></div>
-                <a class="nav-link sidebar-toggle-box" data-lte-toggle="sidebar" href="#" role="button">
-                    <i class="bi bi-list"></i>
-                </a>
-                <form class="searchForm"
-                    action="{{ route('products.index') }}"
-                    method="GET"
-                    autocomplete="off">
-                    <input class="form-control"
-                        type="text"
-                        name="query"
-                        id="search-input"
-                        placeholder="Поиск по товарам...">
-                    <button type="submit" class="btn btn-link text-dark">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </form>
+            <div class="ms-3 navbar-other">
+                <div class="topbar-act">
+                    <a class="sidebar-toggle-box" data-lte-toggle="sidebar" href="#" role="button">
+                        <i class="bi bi-list"></i>
+                    </a>
+                    <form class="ms-5 searchForm"
+                        action="{{ route('products.index') }}"
+                        method="GET"
+                        autocomplete="off">
+                        <input class="form-control"
+                            type="text"
+                            name="query"
+                            id="search-input"
+                            placeholder="Поиск по товарам...">
+                        <button type="submit" class="btn btn-link text-dark">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                </div>
 
                 <div class="search-popup__results d-none" id="box-content-search-wrapper">
                     <div class="recent__wrapper sticky-top" id="recentCard">
@@ -291,9 +295,7 @@
                                         var link = url.replace('product_id',item.id);
 
                                         $("#box-content-search").append(`
-                                            <li>
-                                                @include('product.search-product')
-                                            </li>
+                                            @include('product.search-product')
                                         `);
                                     });
                                 }
@@ -398,13 +400,13 @@
             });
             </script>
             <script>
-                /* клик по «гамбургеру» → переключить класс на aside */
                 document.querySelector('[data-lte-toggle="sidebar"]')
-                        .addEventListener('click', e => {
-                            e.preventDefault();
-                            document.getElementById('mainSidebar').classList.toggle('sidebar-collapsed');
-                        });
-                </script>
+                    .addEventListener('click', e => {
+                        e.preventDefault();
+                        document.getElementById('mainSidebar').classList.toggle('sidebar-collapsed');
+                    });
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
         </div>
     </footer>
   </div>

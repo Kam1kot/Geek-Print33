@@ -36,9 +36,15 @@
             </a>
             </li>
             <li class="nav-item">
-            <a href="./generate/theme.html" class="nav-link">
+            <a href="{{ route('admin.manage.categories') }}" class="nav-link">
                 <i class="nav-icon bi bi-palette"></i>
                 <p>Управление категориями</p>
+            </a>
+            </li>
+            <li class="nav-item">
+            <a href="{{ route('admin.manage.tags') }}" class="nav-link">
+                <i class="nav-icon bi bi-palette"></i>
+                <p>Управление тегами</p>
             </a>
             </li>
             {{-- <li class="nav-header fs-5">Другое</li>

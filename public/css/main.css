@@ -45,6 +45,35 @@ input:-internal-autofill-selected {
 }
 
 /* Сайдбар */
+.sidebar-toggle-box {
+    transform: scale(1.4);
+}
+.sidebar-toggle-box:hover {
+    color: #e67e22;
+}
+.sidebar .logo a {
+    color: white !important;
+    text-decoration: none !important;
+}
+.sidebar .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    min-width: 280px;
+    width: 280px;
+}
+.sidebar .title-geek {
+    color: orange;
+}
+.sidebar-collapsed ~ .topbar {
+    left: 0;
+}
+
+.sidebar-collapsed ~ .content {
+    margin-left: 0;
+}
 .sidebar-collapsed .sidebar-info,
 .sidebar-collapsed .sidebar-menu p {
     display: none;
@@ -58,19 +87,23 @@ input:-internal-autofill-selected {
 }
 
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
     position: fixed;
-    top: 80px; /* под навбаром */
+    top: 0;
     left: 0;
     bottom: 0;
     width: 280px;
 
+    display: flex;
+    flex-direction: column;
+
     overflow: hidden;
 
     background: #1c1c1c;
+}
+.sidebar nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .sidebar .nav-item {
     font-size: 1.2rem !important;
@@ -90,7 +123,9 @@ input:-internal-autofill-selected {
     color: orange !important;
 }
 .sidebar .sidebar-info {
+    width: 100%;
     color: rgb(136, 136, 136);
+    margin-top: auto;
 }
 .sidebar .sidebar-info i {
     transform: scale(1.25);
@@ -108,38 +143,18 @@ input:-internal-autofill-selected {
     color: white;
 
     position: fixed;
-    top: 0;
-    left: 0;
+    width: auto;
+    left: 285px;
     right: 0;
     z-index: 1000;
     background: #1c1c1c;
 
     height: 90px;
 }
-.topbar .logo a {
-    color: inherit !important;
-    text-decoration: none !important;
-}
-.topbar .logo {
+.topbar-act {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    padding: 1rem;
-    min-width: 280px;
-    width: 280px;
-}
-.topbar .title-geek {
-    color: orange;
-}
-.topbar .divider {
-    width: 8px;
-    height: 90px;
-    position: absolute;
-    z-index: 2;
-    left: 0;
-    top: -1rem;
-    background-color: #0e0e0e;
+    gap: 2rem;
 }
 .topbar .cart {
     display: flex;
@@ -156,7 +171,7 @@ input:-internal-autofill-selected {
 }
 .navbar-wrapper .navbar-other {
     position: relative;
-    padding-left: 8rem;
+    padding-left: 2rem;
     padding-right: 6rem;
     width: 100%;
     display: flex;
@@ -186,7 +201,7 @@ input:-internal-autofill-selected {
     align-items: center;
     justify-content: center;
     position: relative;
-    min-width: 50rem;
+    min-width: 47rem;
 }
 .navbar-wrapper .searchForm input::placeholder {
     color: white;
@@ -202,18 +217,18 @@ input:-internal-autofill-selected {
     padding-left: 1.75rem;
     background-color: #131313;
 }
-.navbar-wrapper .searchForm i {
+.navbar-wrapper .searchForm button {
     color: #e67e22;
     opacity: 0.75;
     position: absolute;
-    right: 7%;
+    right: 2%;
     top: 50%;
     transform: translateY(-50%);
 }
 .search-popup__results {
     position: absolute;
     top: 150%;
-    left: 10%;
+    left: 8%;
     background: #1c1c1c;
     border: 0.5px solid #ff7700;
     max-height: 42vh;
@@ -267,8 +282,14 @@ input:-internal-autofill-selected {
     padding: 0.4rem 1.5rem;
     cursor: pointer;
 }
+
 .search-popup__results-list li:hover {
     background: #f2f2f2;
+}
+.search-popup__results-list li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 #box-content-search > p {
     color: #e67e22;
@@ -276,6 +297,9 @@ input:-internal-autofill-selected {
 .search-product__img-wrapper img {
     display: block;
     border-radius: 5px;
+
+    width: 7.5rem;
+
     object-fit: cover;
 }
 .search-product__details {
@@ -296,8 +320,7 @@ input:-internal-autofill-selected {
 .content {
     color: white;
     background-color: #0e0e0e;
-    margin-left: 280px; /* отодвигаем контент вправо */
-    margin-top: 80px; /* под навбар */
+    margin-left: 280px;
     padding: 1rem;
 
     display: flex;
@@ -307,7 +330,7 @@ input:-internal-autofill-selected {
 
 .content .main-inner {
     width: 100%;
-    margin: 0 auto;
+    margin: 80px auto 0;
 }
 .content .banner-wrapper {
     display: flex;
@@ -467,6 +490,7 @@ input:-internal-autofill-selected {
     }
 }
 .content-wrapper {
+    padding-top: 5rem;
     width: 100%;
 }
 .content-inner {
@@ -1284,6 +1308,85 @@ input:-internal-autofill-selected {
 .other-prds .swiper .swiper-slide:last-child {
     border-right: 0;
 }
+/* Редактирование */
+.edit h2 {
+    color: #ffa500;
+}
+.edit form {
+    padding: 2rem;
+    background-color: #1c1c1cb2;
+    border-radius: 1rem;
+    color: white;
+
+    max-width: 30rem;
+}
+.edit form h3 {
+    color: #e67e22;
+}
+.edit form .form-text {
+    color: gray;
+}
+.edit form .image {
+    display: flex;
+    flex-direction: column;
+}
+.edit form textarea.form-control {
+    font-size: 0.9em;
+}
+.edit form select {
+    color: black;
+}
+.edit form select option {
+    color: black;
+}
+.edit form select {
+    scrollbar-width: none;
+}
+.manage-categories {
+    color: white;
+}
+.manage-categories h2,
+.manage-categories h3 {
+    color: #ffa500;
+}
+.manage-categories .category-list-wrapper {
+    width: 75%;
+}
+.manage-categories .category-list-wrapper .actions {
+    display: flex;
+    gap: 0.5rem;
+}
+/* выпадашка */
+#searchDrop {
+    position: absolute;
+    z-index: 1050;
+    background: #fff;
+    border: 1px solid #ced4da;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+}
+#searchDrop .dropdown-item {
+    cursor: pointer;
+    padding: 0.35rem 0.75rem;
+}
+#searchDrop .dropdown-item:hover {
+    background: #f8f9fa;
+}
+
+/* подсветка найденной строки */
+tr.highlight {
+    animation: highlight 1.5s ease-out;
+}
+@keyframes highlight {
+    0% {
+        background: #fff3cd;
+    }
+    100% {
+        background: transparent;
+    }
+}
 /* Админка */
 .admin .app-header {
     border-bottom: none;
@@ -1297,7 +1400,189 @@ input:-internal-autofill-selected {
 .admin .main-content {
     background-color: #0e0e0e;
 }
-.admin-sidebar .nav-link {
+
+.manage-products > .content-inner {
+    display: flex;
+    overflow: visible;
+    align-items: flex-start;
+    width: 100%;
+}
+.manage-products .form-wrapper {
+    position: sticky;
+    flex-shrink: 0;
+    top: 7rem;
+}
+.manage-products form {
+    padding: 2rem;
+    background-color: #1c1c1cb2;
+    border-radius: 1rem;
+    color: white;
+
+    max-width: 30rem;
+}
+.manage-products form h3 {
+    color: #e67e22;
+}
+.manage-products form .form-text {
+    color: gray;
+}
+.manage-products form .image {
+    display: flex;
+    flex-direction: column;
+}
+.manage-products form textarea.form-control {
+    font-size: 0.9em;
+}
+.manage-products form select {
+    color: black;
+}
+.manage-products form select option {
+    color: black;
+}
+.manage-products form select {
+    scrollbar-width: none;
+}
+.manage-products .actions {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.manage-tags h2,
+.manage-tags h3 {
+    color: #ffa500;
+}
+.manage-tags .tag-list-wrapper {
+    width: 50%;
+}
+.manage-tags .admin-table-wrapper {
+    width: 100%;
+}
+.manage-tags .tag-list-wrapper .actions {
+    display: flex;
+    gap: 0.5rem;
+}
+#main
+    > section
+    > div
+    > div.w-100.p-4.d-flex.gap-3
+    > div.tag-list-wrapper
+    > div.admin-table-wrapper.mt-3
+    > div
+    > nav
+    > ul {
+    --bs-pagination-hover-color: black;
+    --bs-pagination-focus-color: black;
+    --bs-pagination-color: #e67e22;
+    gap: 0.5rem;
+}
+#searchDrop-tag {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.aproduct-list-wrapper {
+    width: 100%;
+}
+.aproduct-list-wrapper h2 {
+    color: #ff7700;
+}
+.admin-table-wrapper {
+    background: #1e1e2f;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #f1f1f1;
+}
+
+.admin-table thead {
+    background: #ff6a00;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 14px 16px;
+    text-align: left;
+}
+.admin-table td img {
+    width: 10rem;
+    height: auto;
+    border-radius: 5px;
+}
+.admin-table td form {
+    padding: 0 0 0 2rem;
+    background-color: inherit;
+}
+.admin-table .tags {
+    max-width: 10rem;
+    word-break: keep-all;
+}
+.admin-table .tags .tag {
+    font-size: 0.7em;
+}
+.admin-table tbody tr {
+    border-bottom: 1px solid #333;
+}
+
+.admin-table tbody tr:hover {
+    background: #2a2a3d;
+    transition: background 0.2s ease;
+}
+
+.admin-table .btn-sm {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.btn-primary {
+    background: #ff8c00;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #ffa500;
+}
+
+.btn-danger {
+    background: #d9534f;
+    border: none;
+}
+
+.pagination-wrapper {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-wrapper .pagination {
+    --bs-pagination-bg: #2a2a3d;
+    --bs-pagination-border-color: #444;
+    --bs-pagination-color: #ffa500;
+    --bs-pagination-hover-bg: #ff6a00;
+    --bs-pagination-hover-color: #fff;
+    --bs-pagination-active-bg: #ff6a00;
+    --bs-pagination-active-border-color: #ff6a00;
+}
+#main
+    > section
+    > div
+    > div
+    > div.aproduct-list-wrapper
+    > div.aproduct-list
+    > div
+    > div
+    > nav
+    > ul {
+    gap: 0.5rem;
 }
 /* Футер */
 footer {

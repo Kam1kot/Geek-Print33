@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MainController;
 use Illuminate\Http\Request;
@@ -17,10 +19,29 @@ Route::prefix('products')->name('products.')->group( function () {
     
     Route::get('/create', Product\CreateController::class)->name('create');
     Route::post('/', Product\StoreController::class)->name('store');
-    Route::post('/update', Product\UpdateController::class)->name('update');
+    Route::get('/{product}/edit', Product\EditController::class)->name('edit');
+    Route::patch('/{product}', Product\UpdateController::class)->name('update');
     Route::get('/{product}', Product\ShowController::class)->name('show');
-});
 
+    Route::delete('/{product}',Product\DeleteController::class)->name('delete');
+});
+// Роуты категорий
+Route::prefix('categories')->name('categories.')->group( function () {
+    Route::post('/', [CategoryController::class, 'store'])->name('store');
+    Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('edit');
+    Route::patch('/{category}',[CategoryController::class, 'update'])->name('update');
+    Route::delete('/{category}',[CategoryController::class, 'destroy'])->name('delete');
+});
+// Роуты тегов
+Route::prefix('tags')->name('tags.')->group(function () {
+    Route::post('/',       [TagController::class,'store'])->name('store');
+    Route::get ('/{tag}/edit',[TagController::class,'edit'])->name('edit');
+    Route::patch('/{tag}', [TagController::class,'update'])->name('update');
+    Route::delete('/{tag}',[TagController::class,'destroy'])->name('delete');
+
+    Route::get('/search-json',[TagController::class,'searchJson'])->name('search.json');
+    Route::get('/locate',[TagController::class,'locate'])->name('locate');
+});
 // Роуты корзины
 Route::prefix('cart')->name('cart.')->group(function () {
     Route::get('/',[CartController::class, 'index'])->name('index');
@@ -61,21 +82,27 @@ Route::post('/set-cookie-consent', function (Request $request) {
     return response()->json(['status' => 'success']);
 })->name('set.cookie.consent');
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::middleware('guest')->group(function () {
+Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
 
     Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+            ->name('logout');
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-        Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-            ->name('logout');
+        Route::get('/products/search-json', [DashboardController::class, 'searchJson']);
+        Route::get('/products/locate', [DashboardController::class, 'locate'])->name('products.locate');
+        Route::get('manage-products', [DashboardController::class, 'product_manage'])->name('manage.products');
+        Route::get('manage-categories', [CategoryController::class, 'category_manage'])->name('manage.categories');
+        Route::get('manage-tags', [DashboardController::class, 'tag_manage'])->name('manage.tags');
     });
-    Route::get('manage-products', [DashboardController::class, 'product_manage'])->name('manage.products');
 });
 
 

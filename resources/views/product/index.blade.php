@@ -54,9 +54,9 @@
             </div>
         </div>
         <div class="paginate">
-                <div class="paginate-inner">
-                    {{ $products->withQueryString()->links() }}
-                </div>
+            <div class="paginate-inner">
+                {{ $products->withQueryString()->links() }}
             </div>
+        </div>
     </section>
 @endsection()

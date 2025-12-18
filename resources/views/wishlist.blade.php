@@ -3,7 +3,7 @@
     <section class="content-wrapper site-wishlist">
         <div class="content-inner">
             <div class="text-center mt-2 mb-5">
-                <h2 class="fs-1 fw-medium">Список избранного</h2>
+                <h2 class="fs-1 wishlist fw-medium">Список избранного</h2>
             </div>
             <hr class="w-100 border border-secondary border-2 opacity-50">
             <div class="content-inner__items">
