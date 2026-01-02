@@ -7,6 +7,7 @@ use App\Services\TelegramService;
 use Illuminate\Http\Request;
 use Surfsidemedia\Shoppingcart\Facades\Cart;
 use Telegram\Bot\Laravel\Facades\Telegram;
+use Jenssegers\Agent\Agent;
 
 class CartController extends Controller
 {
@@ -22,8 +23,8 @@ class CartController extends Controller
         $categories = Category::all();
         $items_cart = Cart::instance('cart')->content();
         $items_wishlist = Cart::instance('wishlist')->content();
-
-        return view('cart.cart',compact('items_cart', 'items_wishlist','categories', 'title'));
+        $agent = new Agent();
+        return view('cart.cart',compact('agent','items_cart', 'items_wishlist','categories', 'title'));
     }
     public function add_to_cart(Request $request) {
         // dd($request);

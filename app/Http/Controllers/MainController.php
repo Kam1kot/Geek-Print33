@@ -47,6 +47,13 @@ class MainController extends Controller
         $items_wishlist = Cart::instance('wishlist')->content();
         return view('about_us', compact('title','categories', 'items_cart', 'items_wishlist'));
     }
+    public function privacy() {
+        $title = 'О нас';
+        $categories = Category::all();
+        $items_cart = Cart::instance('cart')->content();
+        $items_wishlist = Cart::instance('wishlist')->content();
+        return view('privacy', compact('title','categories', 'items_cart', 'items_wishlist'));
+    }
     public function search(Request $request) {
         $query = $request->input('query');
         $results = Product::where('title', 'LIKE', "%{$query}%")->get()->take(6);

@@ -1,4 +1,4 @@
-const swiper = new Swiper(".main-inner .swiper", {
+const swiper = new Swiper(".main-banners .swiper", {
     // Optional parameters
     direction: "horizontal",
     loop: true,
@@ -7,8 +7,18 @@ const swiper = new Swiper(".main-inner .swiper", {
     },
     slidesPerView: 2,
     spaceBetween: 10,
+    breakpoints: {
+        1600: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+        },
+        320: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+        },
+    },
     // Responsive breakpoints
-    //   breakpoints: {
+    //   breakpoints:
     //     // when window width is >= 320px
     //     320: {
     //       slidesPerView: 2,
@@ -24,16 +34,6 @@ const swiper = new Swiper(".main-inner .swiper", {
     //       slidesPerView: 4,
     //       spaceBetween: 40
     //     },
-    // If we need pagination
-    pagination: {
-        el: ".swiper-pagination",
-    },
-
-    // Navigation arrows
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
 
     // And if we need scrollbar
     scrollbar: {

@@ -5,13 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const previewImg = document.getElementById("previewImg");
     const cropBtn = document.getElementById("cropBtn");
     const mainErr = document.getElementById("mainErr");
-    const currentImg = document.getElementById("currentImg"); // может быть null
+    const currentImg = document.getElementById("currentImg");
 
     let cropper = null;
 
     /* ---------- при загрузке страницы ---------- */
     if (currentImg) {
-        // форма уже содержит картинку – показываем её
         previewWrap.classList.add("d-none");
         previewImg.src = currentImg.src;
     }

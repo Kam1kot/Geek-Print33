@@ -1,7 +1,7 @@
 @extends('layouts.header')
 @section('main-content')
     <section class="content-wrapper">
-        <div class="content-inner">
+        <div class="content-inner catalog-title">
             <div class="text-center mt-2 mb-5">
                 <h2 class="fs-1 fw-medium">Каталог</h2>
             </div>
@@ -14,7 +14,7 @@
                         <form method="GET" action="{{ route('products.index') }}" class="filter-form" id="filter-form">
                             <div class="d-flex flex-column gap-1">
                                 <p>Категории</p>
-                                <div class="d-flex gap-3">
+                                <div class="d-flex flex-wrap gap-3">
                                     @foreach($categories as $category)
                                         <label class="filter-item">
                                             <input type="checkbox"

@@ -7,21 +7,18 @@
     </a>
 
     {{-- название --}}
-    <a href='{{ route('products.show',['product' => $product->id]) }}' class="product-card__title fs-5 fw-bold">{{ $product->title }}</a>
+    <a href='{{ route('products.show',['product' => $product->id]) }}' class="product-card__title fw-bold">{{ $product->title }}</a>
     <p class="product-card__category mb-2">{{ $product->category->title }}</p>
     
     {{-- описание (макс. 3 строки) --}}
-    <p class="product-card__description mb-2"
-       style="display: -webkit-box;
-              -webkit-line-clamp: 3;
-              -webkit-box-orient: vertical;
-              overflow: hidden;">
-        {{ $product->description }}
-    </p>
+    <div class="product-card__description-wrapper">
+        <p class="product-card__description mb-2">
+            {{ $product->description }}
+        </p>
+    </div>
 
     {{-- теги --}}
-    <div class="product-card__tags mb-2"
-         style="min-height: 26px;">
+    <div class="product-card__tags">
         @foreach ($product->tags as $tag)
             <span class="product-card__tag">{{ $tag->title }}</span>
         @endforeach
@@ -31,7 +28,7 @@
     <div class="mt-auto">
         <div class="product-card__actions">
             <div class="product-card__price">
-                <span class="product-card__price-value fs-4 fw-bold">{{ $product->price }} ₽</span>
+                <span class="product-card__price-value fw-bold">{{ $product->price }} ₽</span>
             </div>
             <div class="product-card__btns">
                 @if (Cart::instance('wishlist')->content()->where('id',$product->id)->count()>0)
@@ -49,7 +46,7 @@
                 </form>
                 @endif
                 @if(Cart::instance('cart')->content()->where('id',$product->id)->count()>0)
-                    <a href="{{ route('cart.index') }}" class="product-card__added-to-cart fw-bold"><i class="fa-solid fa-cart-shopping"></i></i> Добавлен</a>
+                    <a href="{{ route('cart.index') }}" class="product-card__added-to-cart fw-bold"><i class="fa-solid fa-cart-shopping"></i></i><span>Добавлен</span></a>
                 @else
                 <form id="addToCart" class="addToCart-form" method="post" action="{{ route('cart.add') }}">
                     @csrf
@@ -59,7 +56,7 @@
                     <input type="hidden" name="price" value="{{ $product->price }}">
 
                     <button type="submit" class="product-card__add-to-cart fw-bold">
-                        <i class="fa-solid fa-cart-plus"></i></i> В корзину
+                        <i class="fa-solid fa-cart-plus"></i></i> <span>В корзину</span>
                     </button>
                 </form>
                 @endif

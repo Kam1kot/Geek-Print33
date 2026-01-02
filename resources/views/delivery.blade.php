@@ -1,12 +1,12 @@
 @extends('layouts.header')
 @section('main-content')
-    <section class="content-wrapper mt-5">
+    <section class="content-wrapper delivery">
         <div class="content-inner">
-            <div class="text-center mb-5">
+            <div class="text-center mb-2">
                 <h2 class="fs-1 fw-medium">Доставка и оплата</h2>
             </div>
             <div class="text-block position-relative mt-4 mb-5 fade-in">
-                <h2 class="fs-2 position-absolute ms-2 fw-bold"><i class="fa-solid fa-comment"></i> Как оформить заказ</h2>
+                <h2 class="position-absolute ms-2 fw-bold"><i class="fa-solid fa-comment"></i> Как оформить заказ</h2>
                 <p class="mt-3">На сайте нет онлайн-оплаты — это сделано для вашей <b>безопасности</b>.</p>
                 <p>После оформления заказа с вами свяжется наш менеджер: уточнит состав, сроки и наличие позиций.</p>
                 <p>Пластиковые детали изготавливаются строго под заказ — обычно это занимает <b>1–2 рабочих дня</b> .</p>

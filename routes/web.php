@@ -13,6 +13,14 @@ Route::get('/', [MainController::class, 'index'])->name('main.index');
 
 Route::get('/about-us', [MainController::class, 'about_us'])->name('main.about_us');
 
+Route::get('/search', [MainController::class, 'search'])->name('main.search');
+
+Route::get('/delivery', [MainController::class, 'delivery'])->name('main.delivery');
+
+Route::get('/contacts', [MainController::class, 'contacts'])->name('main.contacts');
+
+Route::get('/privacy', [MainController::class, 'privacy'])->name('main.privacy');
+
 // Роуты продуктов
 Route::prefix('products')->name('products.')->group( function () {
     Route::get('/', Product\IndexController::class)->name('index');
@@ -68,13 +76,6 @@ Route::prefix(prefix: 'wishlist')->name('wishlist.')->group(function () {
     Route::delete('/remove/{rowId}', [WishlistController::class, 'remove_item'])->name('item.remove');
     Route::delete('/clear', [WishlistController::class, 'empty_wishlist'])->name('destroy');
 });
-
-
-Route::get('/search', [MainController::class, 'search'])->name('main.search');
-
-Route::get('/delivery', [MainController::class, 'delivery'])->name('main.delivery');
-
-Route::get('/contacts', [MainController::class, 'contacts'])->name('main.contacts');
 
 Route::post('/set-cookie-consent', function (Request $request) {
     $cookieConsent = $request->input('cookie_consent');

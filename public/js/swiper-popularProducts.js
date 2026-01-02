@@ -1,11 +1,22 @@
-const swiper_products = new Swiper(".other-prds .swiper", {
+const swiper_popularProducts = new Swiper(".popular-product-list .swiper", {
     // Optional parameters
     direction: "horizontal",
     loop: false,
-    slidesPerView: 4,
-    spaceBetween: 15,
+    slidesPerView: 3,
+    autoplay: {
+        delay: 6000,
+    },
+    spaceBetween: 20,
     breakpoints: {
-        1024: {
+        320: {
+            slidesPerView: 1,
+            spaceBetween: 15,
+        },
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+        },
+        1560: {
             slidesPerView: 3,
             spaceBetween: 20,
         },

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Surfsidemedia\Shoppingcart\Facades\Cart;
+use Jenssegers\Agent\Agent;
 
 class WishlistController extends Controller
 {
@@ -13,7 +14,8 @@ class WishlistController extends Controller
         $categories = Category::all();
         $items_cart = Cart::instance('cart')->content();
         $items_wishlist = Cart::instance('wishlist')->content();
-        return view('wishlist',compact('items_cart', 'items_wishlist','categories', 'title'));
+        $agent = new Agent();
+        return view('wishlist',compact('agent','items_cart', 'items_wishlist','categories', 'title'));
     }
     public function add_to_wishlist(Request $request) {
         // dd($request);

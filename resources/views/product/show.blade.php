@@ -72,11 +72,11 @@
         </div>
 
         @if (\App\Models\Product::all()->count()>1)
-            <div class="content-inner mt-5">
+            <div class="content-inner other-products mt-5">
                 <div class="w-75 text-start fs-5">
                     <p>Другие товары</p>
                 </div>
-                <div class="other-prds w-75">
+                <div class="other-prds w-100 mb-5">
                     <div class="swiper">
                         <div class="swiper-wrapper">
                             @foreach ($products_other->shuffle()->take(4) as $product)

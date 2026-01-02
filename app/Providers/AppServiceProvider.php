@@ -6,6 +6,7 @@ use App\Services\CartService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Jenssegers\Agent\AgentServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {

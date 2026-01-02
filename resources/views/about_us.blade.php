@@ -1,13 +1,14 @@
 @extends('layouts.header')
 @section('main-content')
         {{-- Блок о нас --}}
-        <div class="mt-4 p-4 d-flex justify-content-center flex-column gap-3">
-            <div class="text-center mt-5">
-                <h2 class="fs-2 fw-medium">Чем мы занимаемся?</h2>
-            </div>
+        <div class="mt-4 p-4 d-flex justify-content-center flex-column gap-3 ab-us">
             <section class="content-wrapper">
+                <div class="text-center">
+                    <h2 class="fs-2 fw-medium">Чем мы занимаемся?</h2>
+                </div>
                 <div class="content-inner">
                     <div class="about-us position-relative">
+                        <img class="aboutus-collage" loading="lazy" src="{{ asset('imgs/technical/about-us-collage-1.jpg') }}" alt="">
                         <div class="text-center about-us-text position-relative z-3">
                             <p>Мы специализируемся на 3D-печати и 3D-моделировании. Создаём физические объекты по цифровым чертежам, а также помогаем воплотить ваши идеи в реальность.</p>
                             <p class="my-2 fs-5">Выполняем печать:</p>
@@ -19,7 +20,6 @@
                             <p class="mb-4">Мы используем высокоточные принтеры и качественные материалы, что позволяет получать надёжные и эстетичные изделия любой сложности.</p>
                             <p>Обращайтесь — вместе мы создадим то, что ещё вчера было лишь идеей!</p>
                         </div>
-                        <img class="aboutus-collage" loading="lazy" src="{{ asset('imgs/technical/about-us-collage-1.jpg') }}" alt="">
                     </div>
                 </div>
             </section>

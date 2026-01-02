@@ -1,7 +1,7 @@
 @extends('layouts.header')
 @section('main-content')
 <section class="content-wrapper">
-    <div class="content-inner">
+    <div class="content-inner submit-cart-wrapper">
         <div class="w-100 text-start mt-4 mb-3">
             <h2 class="fs-3 fw-medium">Оформление заказа</h2>
         </div>
@@ -67,7 +67,7 @@
                     <label>ФИО</label>
                     <input type="text" name="name" class="form-control" required>
                 </div> --}}
-                <div class="w-100 mt-5 d-flex justify-content-end submit-cart">
+                <div class="w-100 mt-3 d-flex justify-content-end submit-cart">
                     <button type="submit">Оформить заказ</button>
                 </div>
             </form>
