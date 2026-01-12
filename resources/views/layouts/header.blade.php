@@ -9,6 +9,9 @@
     <title>{{ config('app.name') }} | {{ $title }}</title>
     <base href="{{ asset('/') }}">
     
+    {{-- Яндекс.Аналитика --}}
+    @include('partials.analytics')
+
     {{-- Текст --}}
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
@@ -447,7 +450,8 @@
                         document.querySelector('.nav-item').style.wordBreak = "break-all"
                     }
                     opened += 1;
-                    if (widthEl < 1000) {
+                    console.log(widthEl)
+                    if (widthEl < 767 && opened % 2 == 0) {
                         document.querySelector('.content').classList.toggle('d-none');
                         document.querySelector('footer').classList.toggle('d-none');
                         document.querySelector('.actions').classList.toggle('d-none');

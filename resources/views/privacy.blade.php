@@ -316,21 +316,45 @@
                                         <div class="ol">
                                             <div class="li" id="OMaa0lgW">
                                                     <table class="purpose-table">
-                                                        <tbody><tr>
+                                                        <tbody>
+                                                        <tr>
                                                             <th>Цель обработки</th>
-                                                            <td class="purpose-field"><span class="mark link">Оформление и доставка заказа Покупателю</span></td>
+                                                            <td class="purpose-field">
+                                                                <span class="mark link">Оформление и доставка заказа Покупателю</span>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Персональные данные</th>
-                                                            <td class="data-field"><ul><li><span class="mark link">номера телефонов</span></li><li><span class="mark link">фамилия и имя</span></li><li><span class="mark link">адрес фактического места проживания и&nbsp;регистрации по&nbsp;месту жительства и/или&nbsp;по&nbsp;месту пребывания</span></li></ul></td>
+                                                            <td class="data-field">
+                                                                <ul>
+                                                                    <li>
+                                                                        <span class="mark link">номера телефонов</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span class="mark link">фамилия и имя</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Правовые основания</th>
-                                                            <td class="legal-field"><ul><li><span class="mark link">договоры, заключаемые между оператором и&nbsp;субъектом персональных данных</span></li></ul></td>
+                                                            <td class="legal-field">
+                                                                <ul>
+                                                                    <li>
+                                                                        <span class="mark link">договоры, заключаемые между оператором и&nbsp;субъектом персональных данных</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <th>Виды обработки персональных данных</th>
-                                                            <td class="types-field"><ul><li><span class="mark link">Сбор, запись, систематизация, накопление, хранение, уничтожение и&nbsp;обезличивание персональных данных</span></li></ul></td>
+                                                            <td class="types-field">
+                                                                <ul>
+                                                                    <li>
+                                                                        <span class="mark link">Сбор, запись, систематизация, накопление, хранение, уничтожение и&nbsp;обезличивание персональных данных</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
                                                         </tr>
                                                     </tbody></table>
                                                 </div><div id="purpose-table-template" style="display: none;">
@@ -558,6 +582,27 @@
                                             <div class="li">
                                                 12.3. Актуальная версия Политики в&nbsp;свободном доступе расположена
                                                 в&nbsp;сети Интернет по&nbsp;адресу <span id="owner-privacy-url-value" class="link mark owner-privacy-url-field" data-scroll-to="#owner-privacy-url-field">https://geek-print33.ru/privacy/</span>.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <h5>13. Cookie-файлы</h5>
+                                        <div class="ol">
+                                            <div class="li">
+                                                13.1. Сайт использует cookie-файлы, необходимые для корректной работы сайта
+                                                (обязательные cookie), а также аналитические cookie при наличии согласия
+                                                пользователя.
+                                            </div>
+                                            <div class="li">
+                                                13.2. Обязательные cookie обеспечивают работу корзины, сессий и защиты форм.
+                                                Аналитические cookie используются для улучшения работы сайта и собирают
+                                                обезличенную статистику посещений.
+                                            </div>
+                                            <div class="li">
+                                                13.3. Пользователь может в любой момент изменить настройки cookie через
+                                                интерфейс сайта или настройки браузера.
                                             </div>
                                         </div>
                                     </div>
