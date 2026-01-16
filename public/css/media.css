@@ -43,6 +43,18 @@
         font-size: 1em;
         text-wrap: nowrap;
     }
+    /* Админка */
+    .manage-products-inner {
+        display: block;
+    }
+    .manage-products-inner div #productForm {
+        display: block;
+        max-width: none;
+        width: 100%;
+    }
+    .manage-products-inner div #productForm div {
+        width: 33%;
+    }
 }
 @media (max-width: 1024px) and (min-width: 769px) {
     .topbar {
@@ -226,6 +238,10 @@
     }
     #main > div > div.mt-4.mb-4 > section > .ind-2 {
         width: 100%;
+    }
+    .search-popup__results {
+        width: 100%;
+        left: 0%;
     }
 }
 @media (max-width: 650px) {

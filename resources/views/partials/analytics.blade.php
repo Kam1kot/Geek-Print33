@@ -1,7 +1,7 @@
 @php
-$analyticsEnabled = true; // ← легко выключить
+    $metrikaId = config('analytics.yandex_metrika_id');
 @endphp
 
-@if($analyticsEnabled)
+@if($metrikaId)
     {{-- Яндекс.Метрика --}}
 @endif

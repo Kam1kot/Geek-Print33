@@ -8,14 +8,8 @@
                 </div>
                 <div class="product-details__details">
                     <div>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('products.index') }}">Каталог</a></li>
-                                <li class="breadcrumb-item"><a href="{{ url('/products?category_id[]=') . $product->category->id }}">{{ $product->category->title }}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ $product->title }}</li>
-                            </ol>
-                        </nav>
                         <h2 class="fs-3">{{ $product->title }}</h2>
+                        <h3 class="fs-5">{{ $product->category->title }}</h3>
                     </div>
 
                     <p class="fs-3">{{ $product->price }} ₽</p>
@@ -63,22 +57,20 @@
                             </form>
                         @endif
                     </div>
-                    <div>
-                        <h3 class="prd-cat">Категория товара: <span>{{ $product->category->title }}</span></h3>
-                    </div>
                 </div>
+            </div>
+            <div class="w-75 mt-5 mb-3">
+                <hr>
             </div>
         </div>
         
-        <div class="content-inner mt-5">
+        <div class="content-inner">
             <div class="w-75 d-flex flex-column gap-2">
                 <h3 class="fw-bold fs-4">Описание</h3>
                 <p>{{ $product->description }}</p>
             </div>
         </div>
-        <div class="ms-auto me-auto w-75 mt-5 mb-3">
-            <hr>
-        </div>
+
         @if (\App\Models\Product::all()->count()>1)
             <div class="content-inner other-products mt-5">
                 <div class="w-75 text-start fs-5">
