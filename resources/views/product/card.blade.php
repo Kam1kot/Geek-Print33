@@ -5,7 +5,7 @@
              alt="{{ $product->title }}"
              class="product-card__image">
     </a>
-
+    
     {{-- название --}}
     <a href='{{ route('products.show',['product' => $product->id]) }}' class="product-card__title fw-bold">{{ $product->title }}</a>
     <p class="product-card__category mb-2">{{ $product->category->title }}</p>

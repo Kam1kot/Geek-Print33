@@ -17,7 +17,7 @@ class DashboardController extends Controller
         $title = 'Админ-панель';
         $products = Product::all();
         $categories = Category::all();
-        return view('layouts.admin-header',compact('title','products','categories'));
+        return view('admin.dashboard',compact('title','products','categories'));
     }
     public function searchJson(Request $r)
     {
@@ -30,7 +30,7 @@ class DashboardController extends Controller
     public function locate(Request $r)
     {
         $id   = (int)$r->get('id');
-        $perPage = 30;                      
+        $perPage = 15;                      
 
         // позиция товара в отсортированном списке (0-based)
         $pos = Product::where('id', '<=', $id)->count() - 1;
@@ -53,7 +53,8 @@ class DashboardController extends Controller
         $filter = app()->make(ProductFilter::class, ['queryParams' => array_filter($data)]);
         $products = Product::filter($filter)
         ->whereHas('category')
-        ->paginate(30);
+        ->paginate(15)
+        ->onEachSide(1);
 
         $categories = Category::all();
         $tags = Tag::all();

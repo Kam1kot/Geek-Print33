@@ -12,7 +12,7 @@ class TagController extends Controller
     public function tag_manage()
     {
         $title = 'Управление тегами';
-        $tags  = Tag::orderBy('id','asc')->paginate(30);
+        $tags  = Tag::orderBy('id','asc')->paginate(15);
         return view('admin.manage-tags', compact('title','tags'));
     }
     public function searchJson(Request $r)
@@ -24,7 +24,7 @@ class TagController extends Controller
     }
     public function locate(Request $r)
     {
-        $id      = (int)$r->get('id');
+        $id = (int)$r->get('id');
         $perPage = 15;
 
         $pos = Tag::where('id','<=',$id)->count() - 1;
@@ -39,7 +39,6 @@ class TagController extends Controller
             'tag'   => $tag
         ]);
     }
-    /* сохранить новый тег */
     public function store(Request $request)
     {
         $validated = $request->validate(['title'=>'required|string|max:255']);
