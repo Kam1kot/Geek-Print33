@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Surfsidemedia\Shoppingcart\Facades\Cart;
+use Jenssegers\Agent\Agent;
 
 class ShowController extends Controller
 {
@@ -19,8 +20,9 @@ class ShowController extends Controller
         $items_wishlist = Cart::instance('wishlist')->content();
         $title = $product->title;
 
-        $products_other = Product::get()->shuffle()->take(4);
+        $products_other = Product::get()->shuffle()->take(5);
         $categories = Category::all();
-        return view('product.show' , compact('products_other','product','categories', 'title', 'items_cart', 'items_wishlist'));
+        $agent = new Agent();
+        return view('product.show' , compact('products_other','agent','product','categories', 'title', 'items_cart', 'items_wishlist'));
     }
 }

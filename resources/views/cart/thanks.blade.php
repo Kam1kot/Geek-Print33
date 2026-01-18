@@ -17,7 +17,7 @@
                 <p>Все наши детали делаются под заказ. Срок изготовления составляет <b>1-2 дня.</b></p>
             </div>
 
-            <a href="{{ route('products.index') }}">Вернуться на главную</a>
+            <a class="mb-3" href="{{ route('products.index') }}">Вернуться на главную</a>
         </div>
     </section>
 @endsection
