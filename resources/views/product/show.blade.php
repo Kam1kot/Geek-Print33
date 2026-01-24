@@ -3,18 +3,29 @@
     <section class="content-wrapper">
         <div class="content-inner">
             <div class="product-details mt-5">
+                @if($agent->isMobile())
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ route('products.index') }}">Каталог</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/products?category_id[]=') . $product->category->id }}">{{ $product->category->title }}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $product->title }}</li>
+                        </ol>
+                    </nav>
+                @endif
                 <div class="product-details__img">
                     <img loading="lazy" src="{{ asset('imgs/products/shark.jpg') }}" alt="">
                 </div>
                 <div class="product-details__details">
                     <div>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('products.index') }}">Каталог</a></li>
-                                <li class="breadcrumb-item"><a href="{{ url('/products?category_id[]=') . $product->category->id }}">{{ $product->category->title }}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ $product->title }}</li>
-                            </ol>
-                        </nav>
+                        @if(!$agent->isMobile())
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ route('products.index') }}">Каталог</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ url('/products?category_id[]=') . $product->category->id }}">{{ $product->category->title }}</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{ $product->title }}</li>
+                                </ol>
+                            </nav>
+                        @endif
                         <h2 class="fs-3">{{ $product->title }}</h2>
                     </div>
 
@@ -87,7 +98,7 @@
                 <div class="other-prds w-100 mb-5">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            @foreach ($products_other->shuffle()->take(4) as $product)
+                            @foreach ($products_other as $product)
                                 @include('product.other-products', ['product' => $product])
                             @endforeach
                         </div>
