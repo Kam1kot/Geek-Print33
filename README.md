@@ -60,4 +60,3 @@
 ### Админ-панель
 
 <img src="public/imgs/git/admin-page.png">
->>>>>>> main
