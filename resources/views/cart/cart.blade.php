@@ -149,7 +149,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="cart__actions-wrapper">
+                            <div class="cart__actions-wrapper mb-4">
                                 <div class="cart__actions-inner">
                                     <div class="clear-cart">
                                         <form action="{{ route('cart.destroy') }}" method="post">

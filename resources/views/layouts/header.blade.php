@@ -9,6 +9,9 @@
     <title>{{ config('app.name') }} | {{ $title }}</title>
     <base href="{{ asset('/') }}">
     
+    {{-- Яндекс.Аналитика --}}
+    @include('partials.analytics')
+
     {{-- Текст --}}
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
@@ -442,17 +445,27 @@
                     var widthEl = document.querySelector('.navbar-wrapper').clientWidth;
                     if (opened % 2 == 0) {
                         document.querySelector('.nav-item').style.wordBreak = "keep-all"
-                        console.log(opened)
                     } else {
                         document.querySelector('.nav-item').style.wordBreak = "break-all"
                     }
                     opened += 1;
-                    if (widthEl < 1000) {
+                    console.log(widthEl)
+                    if (widthEl < 1024 && opened % 2 == 0) {
                         document.querySelector('.content').classList.toggle('d-none');
                         document.querySelector('footer').classList.toggle('d-none');
-                        document.querySelector('.actions').classList.toggle('d-none');
-                        document.querySelector('.sidebar-cart').classList.toggle('d-none');
-                        document.querySelector('.sidebar-wishlist').classList.toggle('d-none');
+                        document.querySelector('.actions').classList.add('d-none');
+                        document.querySelector('.sidebar-cart').classList.remove('d-none');
+                        document.querySelector('.sidebar-wishlist').classList.remove('d-none');
+
+                        document.querySelector('.topbar-act').style.width = "100%"
+                        document.querySelector('.topbar-act').style.justifyContent = "center"
+                        console.log(opened)
+                    } else if (opened % 2 == 1) {
+                        document.querySelector('.sidebar-cart').classList.add('d-none');
+                        document.querySelector('.sidebar-wishlist').classList.add('d-none');
+                        document.querySelector('.actions').classList.remove('d-none');
+                        document.querySelector('.content').classList.remove('d-none');
+                        console.log(opened)
                     }
                     e.preventDefault();
                     document.getElementById('mainSidebar').classList.toggle('sidebar-collapsed');

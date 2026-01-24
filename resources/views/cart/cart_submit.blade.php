@@ -15,7 +15,7 @@
                 </ol>
             </nav> --}}
         </div>
-        <div class="submit-wrapper mt-3">
+        <div class="submit-wrapper mt-3 w-100">
             {{-- {{ route('cart.checkout') }} --}}
             <form action="{{ route('cart.checkout') }}" method="post"> 
                 @csrf
@@ -24,23 +24,24 @@
                     <div class="cstmr-det">
                         <div class="first-name">
                             <label for="first-name">Имя *</label>
-                            <input maxlength="10" placeholder="Иванушка" type="text" name="first-name" class="form-control" required>
+                            <input value="{{ old('first_name') }}" maxlength="10" placeholder="Иванушка" type="text" name="first_name" class="form-control" required>
                         </div>
                         <div class="last-name">
                             <label for="last-name">Фамилия *</label>
-                            <input maxlength="36" placeholder="Иванушечков" type="text" name="last-name" class="form-control" required>
+                            <input value="{{ old('last_name') }}" maxlength="36" placeholder="Иванушечков" type="text" name="last_name" class="form-control" required>
                         </div>
                         <div class="customer-tel">
                             <label for="phone">Телефон *</label>
-                            <input type="number"
-                                name="phone" 
+                            <input type="tel"
+                                value="{{ old('phone') }}"
+                                name="phone"
                                 class="form-control" 
-                                placeholder="+7 (___) ___-__-__"
-                                pattern="^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$"
+                                placeholder="8 (___) ___ - __ - __"
+                                autocomplete="tel"
                                 required> 
                         </div>
                     </div>
-                    <h3 class="mt-5 mb-1">Адресс доставки</h3>
+                    {{-- <h3 class="mt-5 mb-1">Адресс доставки</h3>
                     <div class="cstmr-det">
                         <div class="city">
                             <label for="city">Город *</label>
@@ -54,15 +55,29 @@
                             <label for="index">Индекс *</label>
                             <input placeholder="123456" type="number" name="index" class="form-control" required>
                         </div>
-                    </div>
+                    </div> --}}
                     <h3 class="mt-5 mb-1">Нюансы</h3>
                     <div class="cstmr-det">
                         <div class="comment">
                             <label for="comment">Комментарий</label>
-                            <textarea maxlength="500" name="comment" placeholder="Ваш комментарий к заказу. Пожелания насчет заказа и т.д."></textarea>
+                            <textarea maxlength="500" name="comment" placeholder="Ваш комментарий к заказу. Пожелания насчет заказа и т.д.">{{ old('comment') }}</textarea>
                         </div>
                     </div>
+                    <div class="mt-2">
+                        <input type="checkbox" name="privacy_accept" required>
+                        Я согласен на обработку персональных данных
+                        (<a href="{{ route('main.privacy') }}" target="_blank">Политика конфиденциальности</a>)
+                    </div>
                 </div>
+                @if ($errors->any())
+                    <div class="alert mt-2 alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 {{-- <div class="mb-3">
                     <label>ФИО</label>
                     <input type="text" name="name" class="form-control" required>

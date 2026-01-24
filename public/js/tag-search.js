@@ -1,11 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("liveSearch");
+    const input = document.getElementById("liveSearch");
     const drop = document.getElementById("searchDrop");
-    /* если не страница товаров — выходим */
-    if (!searchInput || !drop) {
-        console.warn("LiveSearch: элементы не найдены");
-        return;
-    }
 
     const rows = [...document.querySelectorAll(".product-row")];
 
@@ -17,39 +12,43 @@ document.addEventListener("DOMContentLoaded", () => {
         rows.forEach((r) => r.classList.remove("highlight"));
     };
 
-    /* клик по результату */
+    /* === клик по результату === */
     drop.addEventListener("click", async (e) => {
         const item = e.target.closest("[data-id]");
         if (!item) return;
 
         const id = item.dataset.id;
 
-        const res = await fetch(`/admin/products/locate?id=${id}`);
-        const { found, page } = await res.json();
+        // используем route('tags.locate') через blade
+        const res = await fetch(`/tags/locate?id=${id}`);
+        const { found, page, tag } = await res.json();
         if (!found) return;
 
         const here = document.querySelector(
-            `.product-row[data-product-id="${id}"]`
+            `.product-row[data-tag-id="${id}"]`
         );
 
         if (here) {
             toggleDrop(false);
-            searchInput.value = "";
+            input.value = "";
             clearHighlight();
             here.classList.add("highlight");
             here.scrollIntoView({ behavior: "smooth", block: "center" });
             return;
         }
 
+        // если тег на другой странице — редирект с highlight
         const url = new URL(location);
         url.searchParams.set("page", page);
         url.searchParams.set("highlight", id);
         location.href = url.toString();
     });
 
+    /* === ввод текста === */
     let abortCtrl;
-    searchInput.addEventListener("input", async () => {
-        const q = searchInput.value.trim();
+
+    input.addEventListener("input", async () => {
+        const q = input.value.trim();
         if (!q) {
             toggleDrop(false);
             return;
@@ -60,19 +59,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const res = await fetch(
-                `/admin/products/search-json?q=${encodeURIComponent(q)}`,
+                `/tags/search-json?q=${encodeURIComponent(q)}`,
                 { signal: abortCtrl.signal }
             );
-
             if (!res.ok) throw new Error(res.status);
 
             const data = await res.json();
 
             drop.innerHTML = data
                 .map(
-                    (p) =>
-                        `<div class="dropdown-item" data-id="${p.id}">
-                            ${p.title} <span class="muted">id:${p.id}</span>
+                    (t) =>
+                        `<div class="dropdown-item" data-id="${t.id}">
+                            #${t.title} <span class="muted">id:${t.id}</span>
                         </div>`
                 )
                 .join("");
@@ -80,42 +78,27 @@ document.addEventListener("DOMContentLoaded", () => {
             toggleDrop(!!data.length);
         } catch (err) {
             if (err.name === "AbortError") return;
-            console.warn("Live search error:", err);
             toggleDrop(false);
         }
     });
 
+    /* === клик вне области закрывает выпадающий список === */
     document.addEventListener("click", (e) => {
-        if (
-            !e.target.closest("#liveSearch") &&
-            !e.target.closest("#searchDrop")
-        ) {
-            toggleDrop(false);
-        }
+        if (!e.target.closest(".search-box")) toggleDrop(false);
     });
 
-    const params = new URLSearchParams(window.location.search);
+    /* === подсветка после редиректа === */
+    const params = new URLSearchParams(location.search);
     const highlightId = params.get("highlight");
 
     if (highlightId) {
         const row = document.querySelector(
-            `.product-row[data-product-id="${highlightId}"]`
+            `.product-row[data-tag-id="${highlightId}"]`
         );
-
         if (row) {
-            console.log(row);
             row.classList.add("highlight");
-
-            row.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-            });
-
-            // убрать подсветку через 3 секунды (опционально)
-            setTimeout(() => {
-                row.classList.remove("highlight");
-            }, 3000);
+            row.scrollIntoView({ behavior: "smooth", block: "center" });
+            setTimeout(() => row.classList.remove("highlight"), 3000);
         }
     }
-    console.log("Карточек товаров:", rows.length);
 });

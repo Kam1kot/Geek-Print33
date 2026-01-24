@@ -14,15 +14,9 @@ class TelegramService
         $text .= "\n";
 
         $text .= "👤 Контактные данные 👤\n";
-        $text .= "- Имя: {$customer['first-name']}\n";
-        $text .= "- Фамилия: {$customer['last-name']}\n";
+        $text .= "- Имя: {$customer['first_name']}\n";
+        $text .= "- Фамилия: {$customer['last_name']}\n";
         $text .= "- Телефон: {$customer['phone']}\n";
-        $text .= "\n";
-
-        $text .= "📍 Адресс доставки 📍\n";
-        $text .= "- Город: {$customer['city']}\n";
-        $text .= "- Улица: {$customer['street']}\n";
-        $text .= "- Индекс: {$customer['index']}\n";
         $text .= "\n";
 
         if (isset($customer['comment'])) {

@@ -69,14 +69,17 @@ class CartController extends Controller
     public function send_order(Request $request)
     {
         $validated = $request->validate([
-        'first-name' => 'required|string|max:20',
-        'last-name'  => 'required|string|max:36',
-        'phone'      => 'required|string|max:11',
-        'city'       => 'required|string|max:30',
-        'street'     => 'required|string|max:70',
-        'index'      => 'required|integer',
-        'comment'    => 'nullable|string|max:500'
-    ]);
+            'first_name' => ['required', 'string', 'max:20'],
+            'last_name' => ['required', 'string', 'max:36'],
+            'phone' => ['required', 'string', 'regex:/^(?:\+7|8)\d{10}$/'],
+            'comment' => ['nullable', 'string', 'max:500'],
+            'privacy_accept' => ['accepted'],
+            ], 
+            [
+            'phone.required' => 'Введите номер телефона',
+            'phone.regex'    => 'Номер должен быть в формате +7XXXXXXXXXX или 8XXXXXXXXXX',
+            ]
+        );
 
         app(TelegramService::class)->checkout($validated);
 
