@@ -8,6 +8,10 @@ main {
     /* overflow: visible; */
     flex: 1 0 auto;
 }
+a {
+    color: white;
+    text-decoration: none;
+}
 html {
     scroll-behavior: smooth;
 }

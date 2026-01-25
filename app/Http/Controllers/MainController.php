@@ -6,7 +6,9 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Surfsidemedia\Shoppingcart\Facades\Cart;
+
 
 class MainController extends Controller
 {

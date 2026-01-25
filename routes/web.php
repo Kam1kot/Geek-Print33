@@ -7,8 +7,8 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MainController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Route;
-
 Route::get('/', [MainController::class, 'index'])->name('main.index');
 
 Route::get('/about-us', [MainController::class, 'about_us'])->name('main.about_us');
@@ -76,12 +76,6 @@ Route::prefix(prefix: 'wishlist')->name('wishlist.')->group(function () {
     Route::delete('/remove/{rowId}', [WishlistController::class, 'remove_item'])->name('item.remove');
     Route::delete('/clear', [WishlistController::class, 'empty_wishlist'])->name('destroy');
 });
-
-Route::post('/set-cookie-consent', function (Request $request) {
-    $cookieConsent = $request->input('cookie_consent');
-    session()->put('cookie_consent', $cookieConsent);
-    return response()->json(['status' => 'success']);
-})->name('set.cookie.consent');
 
 Route::middleware('guest')->group(function () {
     Route::get('eXkTwLizPNeyNpIIVkoj', [AuthenticatedSessionController::class, 'create'])
