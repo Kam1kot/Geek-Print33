@@ -14,8 +14,8 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         $admins = [
-            ['username' => config('auth.owner_login'), 'password' => bcrypt(config('auth.owner_pass'))],
-            ['username' => config('auth.dev_login'), 'password' => bcrypt(config('auth.dev_pass'))],
+            ['username' => env('OWNER_LOGIN'), 'password' => bcrypt(env('OWNER_PASS'))],
+            ['username' => env('DEV_LOGIN'), 'password' => bcrypt(env('DEV_PASS'))],
         ];
         
         foreach ($admins as $admin) {

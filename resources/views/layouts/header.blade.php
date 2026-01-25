@@ -21,7 +21,7 @@
       font-style: normal;
       }
     </style>
-
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     {{-- CSS файл --}}
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/media.css') }}">
@@ -76,7 +76,6 @@
       href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
     />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
