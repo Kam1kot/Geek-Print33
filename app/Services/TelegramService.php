@@ -9,8 +9,8 @@ class TelegramService
 {
     public function checkout(array $customer) {
         $cart = Cart::instance('cart')->content();
+        $text = $customer['isSuspicious'] ? "⚠️ *Подозрительный заказ*" : "🛒 *Новый заказ*";
 
-        $text = "📦 <b>Новый заказ</b>\n";
         $text .= "\n";
 
         $text .= "👤 Контактные данные 👤\n";
@@ -23,7 +23,7 @@ class TelegramService
             $text .= "📝 Комментарий 📝\n";
             $text .= "{$customer['comment']}\n\n";
         } else {
-            $text .= "Комментария нет";
+            $text .= "Комментария нет\n";
         }
         $text .= "📋 Товары: 📋\n";
         

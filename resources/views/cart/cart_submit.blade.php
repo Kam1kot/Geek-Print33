@@ -30,6 +30,7 @@
                             <label for="last-name">Фамилия *</label>
                             <input value="{{ old('last_name') }}" maxlength="36" placeholder="Иванушечков" type="text" name="last_name" class="form-control" required>
                         </div>
+                        <input type="text" name="company" style="display:none">
                         <div class="customer-tel">
                             <label for="phone">Телефон *</label>
                             <input type="tel"

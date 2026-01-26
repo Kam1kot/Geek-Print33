@@ -64,7 +64,7 @@ Route::prefix('cart')->name('cart.')->group(function () {
     Route::delete('/clear', [CartController::class, 'empty_cart'])->name('destroy');
 
     Route::get('/order/submit', [CartController::class, 'cart_submit'])->name('submit.order');
-    Route::post('/order', [CartController::class, 'send_order'])->name('checkout');
+    Route::post('/order', [CartController::class, 'send_order'])->middleware('throttle:5,10')->name('checkout');
     Route::get('/order/thanks', [CartController::class, 'order_thanks'])->name('thanks.order');
     // Route::get('/order/thanks', [CheckoutController::class, 'thanks'])->name('checkout.thanks');
 });

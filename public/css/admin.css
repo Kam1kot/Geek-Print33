@@ -60,11 +60,21 @@ a {
     width: var(--sidebar-width);
     background: var(--sidebar-bg);
     color: #fff;
-    transition: width 0.25s ease, transform 0.25s ease;
+    transition:
+        width 0.25s ease,
+        transform 0.25s ease;
     z-index: 1038;
     overflow: hidden;
+    max-height: 100vh;
 }
-
+.admin-logout {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+}
+.admin-logout form {
+    margin-top: auto;
+}
 .admin.sidebar-collapsed .admin-sidebar {
     width: var(--sidebar-collapsed);
 }

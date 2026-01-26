@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Services\TelegramService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Surfsidemedia\Shoppingcart\Facades\Cart;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Jenssegers\Agent\Agent;
@@ -68,11 +69,27 @@ class CartController extends Controller
     }
     public function send_order(Request $request)
     {
+        $ip = request()->ip();
+
+        $key = "orders:ip:$ip";
+        
+        $count = Cache::increment($key);
+        Cache::put($key, $count, now()->addMinutes(10));
+        $isSuspicious = false;
+        
+        if ($count > 3) {
+            $isSuspicious = true;
+        }
+        
+        if (request()->filled('company')) {
+            $isSuspicious = true;
+        }
+        
         $validated = $request->validate([
             'first_name' => ['required', 'string', 'max:20'],
             'last_name' => ['required', 'string', 'max:36'],
             'phone' => ['required', 'string', 'regex:/^(?:\+7|8)\d{10}$/'],
-            'comment' => ['nullable', 'string', 'max:500'],
+            'comment' => ['nullable', 'string', 'max:500'], 
             'privacy_accept' => ['accepted'],
             ], 
             [
@@ -80,7 +97,7 @@ class CartController extends Controller
             'phone.regex'    => 'Номер должен быть в формате +7XXXXXXXXXX или 8XXXXXXXXXX',
             ]
         );
-
+        $validated['isSuspicious'] = $isSuspicious;
         app(TelegramService::class)->checkout($validated);
 
         Cart::instance('cart')->destroy();
