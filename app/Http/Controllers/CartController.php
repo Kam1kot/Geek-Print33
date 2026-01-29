@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Services\TelegramService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Surfsidemedia\Shoppingcart\Facades\Cart;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Jenssegers\Agent\Agent;
@@ -89,7 +90,7 @@ class CartController extends Controller
             'first_name' => ['required', 'string', 'max:20'],
             'last_name' => ['required', 'string', 'max:36'],
             'phone' => ['required', 'string', 'regex:/^(?:\+7|8)\d{10}$/'],
-            'comment' => ['nullable', 'string', 'max:500'],
+            'comment' => ['nullable', 'string', 'max:500'], 
             'privacy_accept' => ['accepted'],
             ], 
             [

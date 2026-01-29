@@ -10,6 +10,7 @@ class TelegramService
 {
     public function checkout(array $customer) {
         $cart = Cart::instance('cart')->content();
+        $text = $customer['isSuspicious'] ? "⚠️ *Подозрительный заказ*" : "🛒 *Новый заказ*";
 
         $text = $customer['isSuspicious']
         ? "⚠️ *Подозрительный заказ*"
