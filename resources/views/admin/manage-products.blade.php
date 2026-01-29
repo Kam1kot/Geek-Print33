@@ -69,7 +69,7 @@
             <div class="product-table"> 
                 @foreach($products as $product) 
                 <div class="product-row" data-product-id="{{ $product->id }}" id="row-{{ $product->id }}"> 
-                    <div class="product-main"> <img src="{{ asset('imgs/products/shark.jpg') }}"> 
+                    <div class="product-main"> <img src="{{ Storage::url($product->image) }}"> 
                         <div>
                             <div class="product-main">
                                 <span class="muted">ID: {{ $product->id }}</span>

@@ -58,7 +58,9 @@ class MainController extends Controller
     }
     public function search(Request $request) {
         $query = $request->input('query');
-        $results = Product::where('title', 'LIKE', "%{$query}%")->get()->take(6);
+        $results = Product::where('title', 'LIKE', "%{$query}%")->orWhereHas('tags', function ($q) use ($query) {
+            $q->where('title', 'LIKE', "%{$query}%");
+        })->get()->take(6);
         return response()->json($results);
     }
 }

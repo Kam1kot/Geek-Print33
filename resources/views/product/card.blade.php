@@ -1,7 +1,7 @@
 <div class="product-card d-flex flex-column" id="product_{{ $product->id }}">
     {{-- изображение --}}
     <a href="{{ route('products.show',['product' => $product->id]) }}">
-        <img src="{{ asset('imgs/products/shark.jpg') }}"
+        <img src="{{ Storage::url($product->image)}}"
              alt="{{ $product->title }}"
              class="product-card__image">
     </a>

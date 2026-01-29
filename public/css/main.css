@@ -840,6 +840,16 @@ input:-internal-autofill-selected {
     --bs-pagination-active-bg: #e67e22;
     --bs-pagination-active-border-color: #e67e22;
 }
+.pagination .page-item .page-link {
+    transition: 0.1s all ease;
+    color: black !important;
+}
+.pagination .page-item.active .page-link {
+    color: white !important;
+}
+.pagination .page-item .page-link:hover {
+    background-color: #e67e20;
+}
 .see-other a {
     border-radius: 1rem;
     padding: 1rem 0.75rem;

@@ -4,13 +4,17 @@ namespace App\Services;
 use App\Models\Category;
 use Surfsidemedia\Shoppingcart\Facades\Cart;
 use Telegram\Bot\Laravel\Facades\Telegram;
+use Illuminate\Support\Facades\Cache;
 
 class TelegramService
 {
     public function checkout(array $customer) {
         $cart = Cart::instance('cart')->content();
 
-        $text = "📦 <b>Новый заказ</b>\n";
+        $text = $customer['isSuspicious']
+        ? "⚠️ *Подозрительный заказ*"
+        : "🛒 *Новый заказ*";
+        
         $text .= "\n";
 
         $text .= "👤 Контактные данные 👤\n";
@@ -23,7 +27,7 @@ class TelegramService
             $text .= "📝 Комментарий 📝\n";
             $text .= "{$customer['comment']}\n\n";
         } else {
-            $text .= "Комментария нет";
+            $text .= "Комментария нет\n";
         }
         $text .= "📋 Товары: 📋\n";
         

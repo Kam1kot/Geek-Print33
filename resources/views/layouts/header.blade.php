@@ -21,7 +21,6 @@
       font-style: normal;
       }
     </style>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
     {{-- CSS файл --}}
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/media.css') }}">
@@ -76,9 +75,11 @@
       href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
     />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   @include('partials.cookie-notification')
   <aside class="sidebar" id="mainSidebar">
     <div class="logo">
@@ -327,7 +328,8 @@
                                 $.each(data, function(index,item) {
                                     var url = "{{ route('products.show', ['product' => 'product_id']) }}";
                                     var link = url.replace('product_id',item.id);
-
+                                    var image = `/storage/${item.image}`;
+                                    
                                     $("#box-content-search").append(`
                                         @include('product.search-product')
                                     `);

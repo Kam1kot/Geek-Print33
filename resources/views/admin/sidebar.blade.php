@@ -32,4 +32,10 @@
             </li>
         </ul>
     </nav>
+    <div class="text-center admin-logout">
+        <form method="post" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit">Выйти</button>
+        </form>
+    </div>
 </aside>

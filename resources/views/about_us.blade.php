@@ -23,11 +23,11 @@
                     </div>
                 </div>
             </section>
-            <div class="text-center mt-2 mb-2 fade-in">
-                <h2 class="mt-5 mb-1 fs-2 fw-medium">Почему именно мы?</h2>
-            </div>
             <section class="content-wrapper">
                 <div class="content-inner">
+                    <div class="text-center mt-2 mb-2 fade-in">
+                        <h2 class="mt-5 mb-1 fs-2 fw-medium">Почему именно мы?</h2>
+                    </div>
                     <p class="fade-in">Обрабатываем каждый заказ с заботой и ответственностью.</p>
                     <div class="why-we mt-4 d-flex flex-column">
                         <div class="mb-4 fade-in">

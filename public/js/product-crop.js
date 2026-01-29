@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 viewMode: 1,
                 autoCropArea: 0,
                 scalable: true,
-                zoomable: false,
+                zoomable: true,
             });
         };
         reader.readAsDataURL(file);

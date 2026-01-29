@@ -1,7 +1,7 @@
 <a class="swiper-slide banner-wrapper" href="{{ route('products.show',['product' => $product->id]) }}">
     <div class="op-wrapper position-relative">
         <div class="op-img">
-            <img src="{{ asset('imgs/products/shark.jpg') }}" alt="">
+            <img src="{{ Storage::url($product->image) }}" alt="">
         </div>
         <div class="op-details d-flex flex-column align-items-center mt-1">
             <h2>{{ $product->title }}</h2>

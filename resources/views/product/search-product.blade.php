@@ -2,7 +2,7 @@
     <a href="${link}">
         <div class="d-flex align-items-center justify-content-between">
             <div class="search-product__img-wrapper">
-                <img src="{{ asset('imgs/products/shark.jpg') }}" alt="${item.title}">
+                <img src="${image}" alt="${item.title}">
             </div>
         </div>
         <div class="search-product__details d-flex align-items-centert text-start">

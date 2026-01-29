@@ -41,9 +41,9 @@
             </div>
         </div>
 
-        <div class="w-100 running-text">
+        <!-- <div class="w-100 running-text">
             <div class="mt-1 mb-3" id="running-text">Только сегодня! Успейте купить игрушки до Нового Года и получите скидку в <bolder>35%</bolder></div>
-        </div>
+        </div> -->
 
         {{-- Блок о нас --}}
         <div class="mt-4 mb-4">

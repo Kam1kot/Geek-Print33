@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Surfsidemedia\Shoppingcart\Facades\Cart;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Jenssegers\Agent\Agent;
+use Illuminate\Support\Facades\Cache;
 
 class CartController extends Controller
 {
@@ -68,6 +69,22 @@ class CartController extends Controller
     }
     public function send_order(Request $request)
     {
+        $ip = request()->ip();
+
+        $key = "orders:ip:$ip";
+        
+        $count = Cache::increment($key);
+        Cache::put($key, $count, now()->addMinutes(10));
+        $isSuspicious = false;
+        
+        if ($count > 3) {
+            $isSuspicious = true;
+        }
+        
+        if (request()->filled('company')) {
+            $isSuspicious = true;
+        }
+        
         $validated = $request->validate([
             'first_name' => ['required', 'string', 'max:20'],
             'last_name' => ['required', 'string', 'max:36'],
@@ -80,9 +97,9 @@ class CartController extends Controller
             'phone.regex'    => 'Номер должен быть в формате +7XXXXXXXXXX или 8XXXXXXXXXX',
             ]
         );
-
+        $validated['isSuspicious'] = $isSuspicious;
         app(TelegramService::class)->checkout($validated);
-
+        
         Cart::instance('cart')->destroy();
 
         return redirect()->route('cart.thanks.order');

@@ -13,7 +13,7 @@
                     </nav>
                 @endif
                 <div class="product-details__img">
-                    <img loading="lazy" src="{{ asset('imgs/products/shark.jpg') }}" alt="">
+                    <img loading="lazy" src="{{ Storage::url($product->image) }}" alt="">
                 </div>
                 <div class="product-details__details">
                     <div>
