@@ -69,6 +69,18 @@
                         <div class="form-text">jpg, jpeg, png, webp ≤ 3 МБ, мин. 600×400</div>
                         <div class="invalid-feedback" id="mainErr"></div>
                     </div>
+                    <div class="d-flex gap-2 flex-wrap">
+                        @foreach($product->images as $img)
+                            <div>
+                                <img src="{{ Storage::url($img->path) }}" style="width:120px">
+                                <form method="POST" action="">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger mt-1">Удалить</button>
+                                </form>
+                            </div>
+                        @endforeach
+                    </div>
                     <button type="submit" class="btn btn-primary" id="saveBtn">Сохранить</button>
                 </form>
                 @if ($errors->any())

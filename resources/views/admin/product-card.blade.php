@@ -1,7 +1,7 @@
 <article class="aproduct">
     <div class="img-wrapper">
         <a href="{{ route('products.show',['product' => $product->id]) }}">
-            <img src="{{ asset('imgs/products/shark.jpg') }}"
+            <img src="{{ asset('storage/' . $product->mainImage->path) }}"
                 alt="{{ $product->title }}"
                 class="product-card__image">
         </a>

@@ -19,9 +19,15 @@ class UpdateController extends Controller
     {
         $validated = $request->validated();
 
-        if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')
-                                    ->store('products', 'public');
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $index => $file) {
+                $path = $file->store('products', 'public');
+
+                $product->images()->create([
+                    'path' => $path,
+                    'sort_order' => $product->images()->count() + $index
+                ]);
+            }
         } else {
             unset($validated['image']);
         }

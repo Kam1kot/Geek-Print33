@@ -18,11 +18,23 @@ class StoreController extends Controller
     public function __invoke(StoreRequest $request)
     {
         $validated = $request->validated();
-        $validated['image'] = $request->file('image')
-                          ->store('products', 'public');
+        $validated['sold'] = 0;
 
-        $product = Product::create(Arr::except($validated, 'tags'));
-        $product->tags()->sync($validated['tags'] ?? []);               
+        $product = Product::create(
+            Arr::except($validated, ['images', 'tags'])
+        );
+
+        foreach ($request->file('images') as $index => $file) {
+            $path = $file->store('products', 'public');
+
+            $product->images()->create([
+                'path' => $path,
+                'sort_order' => $index
+            ]);
+        }
+
+        $product->tags()->sync($validated['tags'] ?? []);
+
         return redirect()->back()->with('success', 'Товар создан');
     }
 }

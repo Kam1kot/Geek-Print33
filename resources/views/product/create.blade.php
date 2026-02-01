@@ -21,6 +21,7 @@
                     <label for="image">Изображение</label>
                     <input type="file" id="image" name="image" class="form-control" required>
                 </div>
+                <input type="number" name="sold" hidden value="0" required>
                 <button class="btn btn-primary" type="submit">Создать товар</button>
             </form>
         </div>

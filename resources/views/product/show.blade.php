@@ -1,5 +1,17 @@
 @extends('layouts.header')
 @section('main-content')
+    <script>
+        function changeMainImage(el) {
+            const main = document.getElementById('mainProductImage');
+
+            main.src = el.dataset.full;
+
+            document.querySelectorAll('.product-thumb')
+                .forEach(img => img.classList.remove('active'));
+
+            el.classList.add('active');
+        }
+    </script>
     <section class="content-wrapper">
         <div class="content-inner">
             <div class="product-details mt-5">
@@ -12,8 +24,29 @@
                         </ol>
                     </nav>
                 @endif
-                <div class="product-details__img">
-                    <img loading="lazy" src="{{ Storage::url($product->image) }}" alt="">
+                <div class="product-images">
+                    {{-- Главное изображение --}}
+                    <div class="product-images__main">
+                        <img
+                            id="mainProductImage"
+                            src="{{ Storage::url($product->images->first()->path ?? 'products/no-image.png') }}"
+                            alt="{{ $product->title }}"
+                        >
+                    </div>
+
+                    {{-- Миниатюры --}}
+                    <div class="product-images__thumbs">
+                        @foreach($product->images as $i => $img)
+                            <img
+                                src="{{ Storage::url($img->path) }}"
+                                data-full="{{ Storage::url($img->path) }}"
+                                alt="{{ $product->title }}"
+                                class="product-thumb {{ $i === 0 ? 'active' : '' }}"
+                                onclick="changeMainImage(this)"
+                            >
+                        @endforeach
+                    </div>
+
                 </div>
                 <div class="product-details__details">
                     <div>
@@ -98,8 +131,8 @@
                 <div class="other-prds w-100 mb-5">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            @foreach ($products_other as $product)
-                                @include('product.other-products', ['product' => $product])
+                            @foreach ($products_other as $otherProduct)
+                                @include('product.other-products', ['product' => $otherProduct])
                             @endforeach
                         </div>
                     </div>
@@ -114,7 +147,6 @@
             </div>
         @endif
     </section>
-
     <script>
         const btnPlus = document.getElementById('qtyProductPlus');
         const btnMinus = document.getElementById('qtyProductMinus');

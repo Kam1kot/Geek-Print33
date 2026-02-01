@@ -45,13 +45,24 @@
                     <input type="text" name="price" class="form-control" required> 
                 </div> 
                 <div class="mb-1 image"> 
-                    <label class="form-label">Главное изображение</label> 
-                    <input type="file" name="image" id="mainFile" accept="image/jpeg,image/jpg,image/png,image/webp" required> 
-                    <!-- превью --> 
-                    <div class="mt-2 d-none" id="previewWrap"> 
-                        <img id="previewImg" style="max-width: 100%; display: block;"> 
-                    </div> <!-- кнопка обрезки --> 
-                    <button type="button" id="cropBtn" class="btn btn-sm btn-outline-success mt-2 d-none"> Обрезать </button> 
+                    <label class="form-label">Изображения (до 3)</label>
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/jpeg,image/png,image/webp"
+                    >
+                    <div class="mt-3 d-flex gap-2 flex-wrap" id="imagesPreview"></div>
+                    <input type="file" name="images[]" id="imagesHidden" multiple hidden>
+
+                    <div class="mt-2 d-none" id="previewWrap">
+                        <img id="previewImg" style="max-width:100%">
+                    </div>
+
+                    <!-- кнопка обрезки -->
+                    <button type="button" id="cropBtn" class="btn btn-sm btn-outline-success d-none">
+                        Обрезать
+                    </button> 
+                    {{-- <button type="button" id="cropBtn" class="btn btn-sm btn-outline-success mt-2 d-none"> Обрезать </button>  --}}
                     <div class="form-text">jpg, jpeg, png, webp ≤ 3 МБ, мин. 600×400</div> 
                     <div class="invalid-feedback" id="mainErr"></div> 
                 </div> 
@@ -69,7 +80,7 @@
             <div class="product-table"> 
                 @foreach($products as $product) 
                 <div class="product-row" data-product-id="{{ $product->id }}" id="row-{{ $product->id }}"> 
-                    <div class="product-main"> <img src="{{ Storage::url($product->image) }}"> 
+                    <div class="product-main"> <img src="{{ Storage::url($product->mainImage->path) }}"> 
                         <div>
                             <div class="product-main">
                                 <span class="muted">ID: {{ $product->id }}</span>

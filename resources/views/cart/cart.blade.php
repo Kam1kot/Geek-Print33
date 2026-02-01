@@ -13,7 +13,7 @@
                             @foreach ($items_cart as $item)
                                 <article class="cart-item">
                                     <div class="img-box">
-                                        <img src="{{ asset('imgs/products/shark.jpg') }}" alt="{{ $item->name }}">
+                                        <img src="{{ Storage::url($product->mainImage->path) ?? asset('imgs/technical/no-cover.png')}}" alt="{{ $item->name }}">
                                     </div>
                                     <div class="info">
                                         <h3>{{ $item->name }}</h3>
@@ -85,11 +85,20 @@
                                     </thead>
         
                                     <tbody>
+                                        @php
+                                            // dd($items_cart);
+                                        @endphp
                                         @foreach ($items_cart as $item)
                                             <tr class="shopping-cart__row" id="product_{{ $item->id }}">
                                                 {{-- Изображение --}}
+                                                @php
+                                                    $product = $item->model; // или $item->associatedModel::find($item->id);
+                                                    $imageUrl = $product && $product->mainImage 
+                                                        ? Storage::url($product->mainImage->path) 
+                                                        : asset('imgs/technical/no-cover.png');
+                                                @endphp
                                                 <td class="shopping-cart__cell-img">
-                                                    <img src="{{asset('imgs/products')}}/{{$item->model->image}}"
+                                                    <img src="{{ $imageUrl }}"
                                                         alt="{{ $item->name }}"
                                                         width="120"
                                                         height="120"

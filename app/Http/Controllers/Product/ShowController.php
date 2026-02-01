@@ -16,6 +16,12 @@ class ShowController extends Controller
 {
     public function __invoke(Product $product)
     {
+        $product->load([
+            'images' => function ($q) {
+                $q->orderBy('sort_order');
+            },
+            'category'
+        ]);
         $items_cart = Cart::instance('cart')->content();
         $items_wishlist = Cart::instance('wishlist')->content();
         $title = $product->title;

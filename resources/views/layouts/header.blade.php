@@ -329,7 +329,6 @@
                                     var url = "{{ route('products.show', ['product' => 'product_id']) }}";
                                     var link = url.replace('product_id',item.id);
                                     var image = `/storage/${item.image}`;
-                                    
                                     $("#box-content-search").append(`
                                         @include('product.search-product')
                                     `);

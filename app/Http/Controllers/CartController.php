@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Services\TelegramService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Surfsidemedia\Shoppingcart\Facades\Cart;
 use Telegram\Bot\Laravel\Facades\Telegram;
 use Jenssegers\Agent\Agent;
-use Illuminate\Support\Facades\Cache;
 
 class CartController extends Controller
 {
@@ -30,7 +30,7 @@ class CartController extends Controller
     }
     public function add_to_cart(Request $request) {
         // dd($request);
-        Cart::instance('cart')->add($request->id, $request->title, $request->quantity, $request->price)->associate('App\Models\Product');
+        Cart::instance('cart')->add($request->id, $request->title, $request->quantity, $request->price,)->associate('App\Models\Product');
         return redirect()->back()->withFragment('product_' . $request->id);
     }
     
@@ -100,6 +100,11 @@ class CartController extends Controller
         );
         $validated['isSuspicious'] = $isSuspicious;
         app(TelegramService::class)->checkout($validated);
+
+        foreach (Cart::instance('cart')->content() as $item) {
+            Product::where('id', $item->id)
+                ->increment('sold', $item->qty);
+        }
         
         Cart::instance('cart')->destroy();
 

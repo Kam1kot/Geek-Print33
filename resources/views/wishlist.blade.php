@@ -12,8 +12,14 @@
                         <div class="cart-grid">
                             @foreach ($items_wishlist as $item)
                                 <article class="cart-item">
+                                    @php
+                                        $product = $item->model;
+                                        $imageUrl = $product && $product->mainImage 
+                                            ? Storage::url($product->mainImage->path) 
+                                            : asset('imgs/technical/no-cover.png');
+                                    @endphp
                                     <div class="img-box">
-                                        <img src="{{ asset('imgs/products/shark.jpg') }}" alt="{{ $item->name }}">
+                                        <img src="{{ $imageUrl}}" alt="{{ $item->name }}">
                                     </div>
                                     <div class="info">
                                         <h3>{{ $item->name }}</h3>
@@ -79,12 +85,16 @@
                                     <tbody>
                                         @foreach ($items_wishlist as $item)
                                             <tr class="shopping-wishlist__row" id="product_{{ $item->id }}">
+                                                @php
+                                                    $product = $item->model;
+                                                    $imageUrl = $product && $product->mainImage 
+                                                        ? Storage::url($product->mainImage->path) 
+                                                        : asset('imgs/technical/no-cover.png');
+                                                @endphp
                                                 {{-- Изображение --}}
                                                 <td class="shopping-wishlist__cell-img">
-                                                    <img src="{{asset('imgs/products')}}/{{$item->model->image}}"
+                                                    <img src="{{ $imageUrl }}"
                                                         alt="{{ $item->name }}"
-                                                        width="120"
-                                                        height="120"
                                                         loading="lazy">
                                                 </td>
         
