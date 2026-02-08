@@ -21,6 +21,10 @@ Route::get('/contacts', [MainController::class, 'contacts'])->name('main.contact
 
 Route::get('/privacy', [MainController::class, 'privacy'])->name('main.privacy');
 
+Route::get('/feedback', [FeedbackController::class,'feedbackPage'])->name('feedback');
+
+Route::post('/feedback/send', [FeedbackController::class, 'feedbackSend'])->name('feedback.send');
+
 // Роуты продуктов
 Route::prefix('products')->name('products.')->group( function () {
     Route::get('/', Product\IndexController::class)->name('index');
@@ -28,9 +32,11 @@ Route::prefix('products')->name('products.')->group( function () {
     Route::get('/create', Product\CreateController::class)->name('create');
     Route::post('/', Product\StoreController::class)->name('store');
     Route::get('/{product}/edit', Product\EditController::class)->name('edit');
-    Route::patch('/{product}', Product\UpdateController::class)->name('update');
+    Route::put('/{product}', Product\UpdateController::class)->name('update');
     Route::get('/{product}', Product\ShowController::class)->name('show');
 
+
+    Route::delete('/product-image/{image}', Product\DeleteImageController::class)->name('image.delete');
     Route::delete('/{product}',Product\DeleteController::class)->name('delete');
 });
 // Роуты категорий

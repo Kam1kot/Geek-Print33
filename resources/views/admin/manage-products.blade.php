@@ -62,6 +62,7 @@
                     <button type="button" id="cropBtn" class="btn btn-sm btn-outline-success d-none">
                         Обрезать
                     </button> 
+                    
                     {{-- <button type="button" id="cropBtn" class="btn btn-sm btn-outline-success mt-2 d-none"> Обрезать </button>  --}}
                     <div class="form-text">jpg, jpeg, png, webp ≤ 3 МБ, мин. 600×400</div> 
                     <div class="invalid-feedback" id="mainErr"></div> 

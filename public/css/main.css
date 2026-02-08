@@ -1179,11 +1179,19 @@ input:-internal-autofill-selected {
     flex-direction: column;
     justify-content: space-between;
 }
+.info-actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 .price {
     font-weight: 600;
     margin: 0.25rem 0;
 }
-
+.qty span {
+    font-size: 1.25em;
+    font-weight: 600;
+}
 .qty {
     display: flex;
     align-items: center;
@@ -1233,6 +1241,52 @@ input:-internal-autofill-selected {
     background-color: rgb(69, 117, 20);
     border-radius: 7px;
     padding: 0.75rem 1rem;
+}
+.feedback {
+    margin-top: 2rem;
+}
+/* Обратная связь */
+.feedback form {
+    margin-top: 5rem;
+    width: 65%;
+}
+.feedback form .form-lab {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+}
+.feedback-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.feedback-info div {
+    width: 48%;
+}
+.feedback form div label {
+    color:#9b9b9b;
+    font-size: 1.25em;
+    padding-left: 0.25rem;
+}
+.feedback form div textarea {
+    min-height: 50px;
+}
+.feedback form div input,.feedback form div textarea {
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    color: white;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #272525;
+}
+.feedback form button {
+    border-radius: 5px;
+    padding: 0.35rem;
+    background-color: greenyellow;
+    border: none;
+    color: black;
+    font-size: 1.1em;
 }
 /* Вишлист */
 .wishlist-amount {
@@ -1553,8 +1607,8 @@ input:-internal-autofill-selected {
 }
 
 .product-images__main img {
-    width: 420px;
-    height: 420px;
+    width: 500px;
+    height: auto;
     object-fit: contain;
     border: 1px solid #eee;
     border-radius: 8px;
@@ -1582,55 +1636,6 @@ input:-internal-autofill-selected {
 .product-thumb:hover,
 .product-thumb.active {
     border-color: #0d6efd;
-}
-
-/* Редактирование */
-.edit h2 {
-    color: #ffa500;
-}
-.edit form {
-    padding: 2rem;
-    background-color: #1c1c1cb2;
-    border-radius: 1rem;
-    color: white;
-
-    max-width: 30rem;
-}
-.edit form h3 {
-    color: #e67e22;
-}
-.edit form .form-text {
-    color: gray;
-}
-.edit form .image {
-    display: flex;
-    flex-direction: column;
-}
-.edit form textarea.form-control {
-    font-size: 0.9em;
-}
-.edit form select {
-    color: black;
-}
-.edit form select option {
-    color: black;
-}
-.edit form select {
-    scrollbar-width: none;
-}
-.manage-categories {
-    color: white;
-}
-.manage-categories h2,
-.manage-categories h3 {
-    color: #ffa500;
-}
-.manage-categories .category-list-wrapper {
-    width: 75%;
-}
-.manage-categories .category-list-wrapper .actions {
-    display: flex;
-    gap: 0.5rem;
 }
 
 /* выпадашка */

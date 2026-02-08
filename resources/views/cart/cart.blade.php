@@ -11,6 +11,12 @@
                     @if ($items_cart->count()>0)
                         <div class="cart-grid">
                             @foreach ($items_cart as $item)
+                                @php
+                                    $product = $item->model; // или $item->associatedModel::find($item->id);
+                                    $imageUrl = $product && $product->mainImage 
+                                        ? Storage::url($product->mainImage->path) 
+                                        : asset('imgs/technical/no-cover.png');
+                                @endphp
                                 <article class="cart-item">
                                     <div class="img-box">
                                         <img src="{{ Storage::url($product->mainImage->path) ?? asset('imgs/technical/no-cover.png')}}" alt="{{ $item->name }}">
@@ -19,25 +25,27 @@
                                         <h3>{{ $item->name }}</h3>
                                         <p class="price">{{ $item->price }} ₽</p>
 
-                                        <div class="qty">
-                                            <form method="post" action="{{ route('cart.qty.decrease', ['rowId' => $item->rowId])}}">
+                                        <div class="info-actions">
+                                            <div class="qty">
+                                                <form method="post" action="{{ route('cart.qty.decrease', ['rowId' => $item->rowId])}}">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button class="qty-control__btn qty-control__btn--minus">-</button>
+                                                </form>
+                                                <span>{{ $item->qty }}</span>
+                                                <form method="post" action="{{ route('cart.qty.increase', ['rowId' => $item->rowId])}}">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button class="qty-control__btn qty-control__btn--plus">+</button>
+                                                </form>
+                                            </div>
+    
+                                            <form method="post" action="{{ route('cart.item.remove', ['rowId' => $item->rowId])}}">
                                                 @csrf
-                                                @method('PUT')
-                                                <button class="qty-control__btn qty-control__btn--minus">-</button>
-                                            </form>
-                                            <span>{{ $item->qty }}</span>
-                                            <form method="post" action="{{ route('cart.qty.increase', ['rowId' => $item->rowId])}}">
-                                                @csrf
-                                                @method('PUT')
-                                                <button class="qty-control__btn qty-control__btn--plus">+</button>
+                                                @method('DELETE')
+                                                <button class="remove-cart"><i class="fa-solid fa-xmark"></i></button>
                                             </form>
                                         </div>
-
-                                        <form method="post" action="{{ route('cart.item.remove', ['rowId' => $item->rowId])}}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="remove-cart"><i class="fa-solid fa-xmark"></i></button>
-                                        </form>
                                         
                                     </div>
                                 </article>

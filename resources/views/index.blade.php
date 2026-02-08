@@ -62,7 +62,7 @@
                         <p class="mb-4">Чтобы начать создание вашего уникального изделия, свяжитесь с нами. Мы с радостью расскажем о наших возможностях и поможем вам принять решение.</p>
                         <div class="d-flex align-items-center gap-2 w-100 flex-wrap justify-content-center">
                             <a class="btn" target="_blank" href="https://vk.com/im?media=&sel=810995763">Связаться с нами <b>VK</b></a>
-                            <p class="btn" onclick="copyText(this)">Связаться с нами <b>Почтой</b></p>
+                            <a class="btn" href="{{ route('feedback') }}">Связаться с нами <b>Почтой</b></a>
                             <a class="btn" target="_blank" href="https://www.avito.ru/profile/messenger/channel/u2u-Rb4dz_GzFWD6R53lDeIyTw">Связаться с нами <b>Avito</b></a>
                         </div>
                     </div>

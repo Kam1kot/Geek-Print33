@@ -383,3 +383,57 @@ h3 {
         margin-left: 0;
     }
 }
+/* Редактирование */
+.edit h2 {
+    color: #ffa500;
+}
+.form-wrapper form {
+    margin: 0 auto;
+}
+.edit form {
+    padding: 2rem;
+    background-color: #1c1c1cb2;
+    border-radius: 1rem;
+    color: white;
+
+    max-width: 30rem;
+}
+.edit form h3 {
+    color: #e67e22;
+}
+.edit form .form-text {
+    color: gray;
+}
+.edit form .image {
+    display: flex;
+    flex-direction: column;
+}
+.edit form textarea.form-control {
+    font-size: 0.9em;
+}
+.edit form select {
+    color: black;
+}
+.edit form select option {
+    color: black;
+}
+.edit form select {
+    scrollbar-width: none;
+}
+.manage-categories {
+    color: white;
+}
+.manage-categories h2,
+.manage-categories h3 {
+    color: #ffa500;
+}
+.manage-categories .category-list-wrapper {
+    width: 75%;
+}
+.manage-categories .category-list-wrapper .actions {
+    display: flex;
+    gap: 0.5rem;
+}
+.update-product-image img{
+    width: 50%;
+}
